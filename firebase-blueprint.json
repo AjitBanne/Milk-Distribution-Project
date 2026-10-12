@@ -1,0 +1,328 @@
+{
+  "entities": {
+    "BusinessEntity": {
+      "title": "BusinessEntity",
+      "description": "Enterprise dairy business entity details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "tagline": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "upiId": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "User": {
+      "title": "User",
+      "description": "System user account with PIN and role",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "username": { "type": "string" },
+        "pin": { "type": "string" },
+        "role": { "type": "string" },
+        "entityId": { "type": "string" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "name", "username", "role"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Dairy retail or wholesale customer",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "name": { "type": "string" },
+        "routeSequence": { "type": "number" },
+        "mobileNumber": { "type": "string" },
+        "address": { "type": "string" },
+        "currentOutstanding": { "type": "number" },
+        "creditLimit": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "name", "routeSequence"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Milk or dairy product item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "name": { "type": "string" },
+        "unit": { "type": "string" },
+        "defaultRate": { "type": "number" },
+        "displaySequence": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "name", "unit", "defaultRate"]
+    },
+    "CustomerRate": {
+      "title": "CustomerRate",
+      "description": "Custom negotiated rate for a specific customer and product",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "productId": { "type": "string" },
+        "rate": { "type": "number" }
+      },
+      "required": ["id", "customerId", "productId", "rate"]
+    },
+    "Vendor": {
+      "title": "Vendor",
+      "description": "Supplier of dairy products or materials",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "currentOutstanding": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["id", "name", "phone"]
+    },
+    "VendorPurchaseRate": {
+      "title": "VendorPurchaseRate",
+      "description": "Agreed purchase rate per product for a vendor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "vendorId": { "type": "string" },
+        "productId": { "type": "string" },
+        "rate": { "type": "number" }
+      },
+      "required": ["id", "vendorId", "productId", "rate"]
+    },
+    "Purchase": {
+      "title": "Purchase",
+      "description": "Bulk purchase inward entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "vendorBillNumber": { "type": "string" },
+        "vendorId": { "type": "string" },
+        "purchaseDate": { "type": "string" },
+        "grossAmount": { "type": "number" },
+        "transportExpenses": { "type": "number" },
+        "otherExpenses": { "type": "number" },
+        "netAmount": { "type": "number" },
+        "paymentAmount": { "type": "number" },
+        "closingOutstanding": { "type": "number" }
+      },
+      "required": ["id", "vendorId", "purchaseDate", "netAmount"]
+    },
+    "Dispatch": {
+      "title": "Dispatch",
+      "description": "Daily route customer milk dispatch and bill",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "billNumber": { "type": "string" },
+        "customerId": { "type": "string" },
+        "dispatchDate": { "type": "string" },
+        "grossAmount": { "type": "number" },
+        "discount": { "type": "number" },
+        "netAmount": { "type": "number" },
+        "paymentReceived": { "type": "number" },
+        "paymentMode": { "type": "string" },
+        "cashAmount": { "type": "number" },
+        "onlineAmount": { "type": "number" },
+        "referenceNumber": { "type": "string" },
+        "previousOutstanding": { "type": "number" },
+        "closingOutstanding": { "type": "number" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "customerId", "dispatchDate", "netAmount"]
+    },
+    "CustomerLedgerEntry": {
+      "title": "CustomerLedgerEntry",
+      "description": "Financial debit and credit ledger record for a customer",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "date": { "type": "string" },
+        "type": { "type": "string" },
+        "referenceId": { "type": "string" },
+        "debit": { "type": "number" },
+        "credit": { "type": "number" },
+        "balance": { "type": "number" },
+        "description": { "type": "string" }
+      },
+      "required": ["id", "customerId", "date", "type", "balance"]
+    },
+    "Collection": {
+      "title": "Collection",
+      "description": "Payment collection recorded from customer",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "date": { "type": "string" },
+        "amount": { "type": "number" },
+        "paymentMode": { "type": "string" },
+        "referenceNumber": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "customerId", "date", "amount"]
+    },
+    "CustomerReturn": {
+      "title": "CustomerReturn",
+      "description": "Products returned by customer from dispatch",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "returnNumber": { "type": "string" },
+        "dispatchId": { "type": "string" },
+        "customerId": { "type": "string" },
+        "returnDate": { "type": "string" },
+        "lines": { "type": "array" },
+        "totalReturnAmount": { "type": "number" },
+        "remarks": { "type": "string" }
+      },
+      "required": ["id", "customerId", "returnDate"]
+    },
+    "Damage": {
+      "title": "Damage",
+      "description": "Spillage or spoilage leakage damage record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "date": { "type": "string" },
+        "productId": { "type": "string" },
+        "quantity": { "type": "number" },
+        "costRate": { "type": "number" },
+        "totalLoss": { "type": "number" },
+        "reason": { "type": "string" }
+      },
+      "required": ["id", "date", "productId", "quantity"]
+    },
+    "ExpenseCategory": {
+      "title": "ExpenseCategory",
+      "description": "Operating expense category definition",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Daily route or operational cash expense",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "categoryId": { "type": "string" },
+        "amount": { "type": "number" },
+        "date": { "type": "string" },
+        "description": { "type": "string" },
+        "paymentMode": { "type": "string" }
+      },
+      "required": ["id", "categoryId", "amount", "date"]
+    },
+    "VendorPayment": {
+      "title": "VendorPayment",
+      "description": "Payment made to supplier/vendor for milk consignments",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "entityId": { "type": "string" },
+        "paymentNumber": { "type": "string" },
+        "vendorId": { "type": "string" },
+        "paymentDate": { "type": "string" },
+        "amount": { "type": "number" },
+        "discount": { "type": "number" },
+        "roundoff": { "type": "number" },
+        "paymentMode": { "type": "string" },
+        "referenceNumber": { "type": "string" },
+        "purchaseId": { "type": "string" },
+        "remarks": { "type": "string" }
+      },
+      "required": ["id", "vendorId", "paymentDate", "amount"]
+    }
+  },
+  "firestore": {
+    "/entities/{entityId}": {
+      "schema": "BusinessEntity",
+      "description": "Root business entity settings and profile"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and credentials"
+    },
+    "/customers/{customerId}": {
+      "schema": "Customer",
+      "description": "Customer directory records"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Product catalog"
+    },
+    "/customerRates/{rateId}": {
+      "schema": "CustomerRate",
+      "description": "Customer specific product pricing"
+    },
+    "/vendors/{vendorId}": {
+      "schema": "Vendor",
+      "description": "Vendor suppliers list"
+    },
+    "/vendorPurchaseRates/{rateId}": {
+      "schema": "VendorPurchaseRate",
+      "description": "Vendor purchase rates"
+    },
+    "/purchases/{purchaseId}": {
+      "schema": "Purchase",
+      "description": "Purchase ledger entries"
+    },
+    "/dispatches/{dispatchId}": {
+      "schema": "Dispatch",
+      "description": "Route dispatches and bills"
+    },
+    "/customerLedger/{entryId}": {
+      "schema": "CustomerLedgerEntry",
+      "description": "Customer ledger records"
+    },
+    "/collections/{collectionId}": {
+      "schema": "Collection",
+      "description": "Payment collections"
+    },
+    "/returns/{returnId}": {
+      "schema": "CustomerReturn",
+      "description": "Customer return records"
+    },
+    "/damages/{damageId}": {
+      "schema": "Damage",
+      "description": "Damages and leakages log"
+    },
+    "/expenseCategories/{catId}": {
+      "schema": "ExpenseCategory",
+      "description": "Expense categories"
+    },
+    "/expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "Operational expenses"
+    },
+    "/vendorPayments/{paymentId}": {
+      "schema": "VendorPayment",
+      "description": "Vendor payments log"
+    }
+  }
+}

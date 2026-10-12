@@ -1,0 +1,8 @@
+{
+  "name": "Remix DairyFlow - Dairy Distribution ERP",
+  "description": "Enterprise dairy distribution management system for Morya Enterprises, handling daily route dispatches, purchases, inventory, ledgers, collections, returns, and WhatsApp billing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
